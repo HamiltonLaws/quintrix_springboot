@@ -1,4 +1,4 @@
-package com.quintrix.springboot;
+package com.quintrix.springboot.controllers;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
