@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.quintrix.springboot.controllers.models.Car;
 
@@ -38,8 +37,7 @@ public class CarController {
     return selectedCar;
   }
 
-  @RequestMapping(value = "/cars/specificCar", method = RequestMethod.GET)
-  @ResponseBody
+  @RequestMapping(value = "/car", method = RequestMethod.GET)
   public List<Car> getCarsModle(@RequestParam("modle") String modle) {
     List<Car> selectedCar;
 
