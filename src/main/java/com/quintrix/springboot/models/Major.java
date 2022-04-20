@@ -1,4 +1,4 @@
-package com.quintrix.springboot.controllers.models;
+package com.quintrix.springboot.models;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

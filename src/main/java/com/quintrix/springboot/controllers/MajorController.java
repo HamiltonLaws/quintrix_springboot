@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import com.quintrix.springboot.controllers.models.Major;
+import com.quintrix.springboot.models.Major;
 import com.quintrix.springboot.service.MajorServices;
 
 @RestController
@@ -24,12 +24,12 @@ public class MajorController {
   }
 
   @PostMapping("/addMajors")
-  public List<Major> addStudent(@RequestBody List<Major> majors) {
+  public List<Major> addmajors(@RequestBody List<Major> majors) {
     return service.saveMajors(majors);
   }
 
   @GetMapping("/majors")
-  public List<Major> findAllStudents() {
+  public List<Major> findAllMajors() {
     return service.getMajors();
   }
 
@@ -38,10 +38,6 @@ public class MajorController {
     return service.getMajorId(id);
   }
 
-  // @GetMapping("/majorByName/{name}")
-  // public Major findMajorByName(@PathVariable String name) {
-  // return service.getMajorByName(name);
-  // }
 
   @PutMapping("/majorUpdate")
   public Major updateMajor(@RequestBody Major major) {
@@ -49,7 +45,7 @@ public class MajorController {
   }
 
   @DeleteMapping("/majorDelete/{id}")
-  public String deleteProduct(@PathVariable int id) {
+  public String deleteMajor(@PathVariable int id) {
     return service.deleteMajor(id);
   }
 }
