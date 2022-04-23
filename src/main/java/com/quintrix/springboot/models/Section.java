@@ -11,6 +11,11 @@ import javax.persistence.Table;
 public class Section {
 
 
+  /*
+   * TODO Connect to course and semester and faculty
+   */
+
+
   @Id
   private int ID;
 

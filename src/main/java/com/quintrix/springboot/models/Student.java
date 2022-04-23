@@ -2,9 +2,12 @@ package com.quintrix.springboot.models;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 
@@ -27,8 +30,12 @@ public class Student {
   @Column(name = "Sex")
   private char sex;
 
-  @Column(name = "MajorID")
-  private int majorId;
+  @OneToOne(cascade = CascadeType.ALL)
+  @JoinColumn(name = "MajorID", referencedColumnName = "ID")
+  private Major major;
+
+  // @Column(name = "MajorID")
+  // private int majorId;
 
   @Column(name = "Scholarship")
   private BigDecimal scholarship;
@@ -38,6 +45,10 @@ public class Student {
 
   @Column(name = "EnrolledDate")
   private LocalDateTime enrolledDate;
+
+
+  // @OneToMany(mappedBy = "student")
+  // private Set club;
 
 
   public int getID() {
@@ -96,13 +107,13 @@ public class Student {
     this.sex = sex;
   }
 
-  public int getMajorId() {
-    return majorId;
-  }
+  // public int getMajorId() {
+  // return majorId;
+  // }
 
-  public void setMajorId(int majorId) {
-    this.majorId = majorId;
-  }
+  // public void setMajorId(int majorId) {
+  // this.majorId = majorId;
+  // }
 
   public BigDecimal getScholarship() {
     return scholarship;

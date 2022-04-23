@@ -10,6 +10,11 @@ import javax.persistence.Table;
 @Table(name = "registration")
 public class Registration {
 
+
+  /*
+   * TODO Connect to student and section
+   */
+
   @Id
   @GeneratedValue
   private int ID;

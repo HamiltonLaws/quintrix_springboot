@@ -1,8 +1,11 @@
 package com.quintrix.springboot.models;
 
+import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 
@@ -14,6 +17,12 @@ public class Department {
   @GeneratedValue
   private int ID;
   private String Name;
+
+  @OneToOne(mappedBy = "department")
+  private Faculty faculty;
+
+  @OneToMany(mappedBy = "department")
+  private Set<Course> courses;
 
   public int getID() {
     return ID;

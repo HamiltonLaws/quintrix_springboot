@@ -4,6 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -20,8 +22,12 @@ public class Course {
   @Column(name = "CreditHours")
   private int creditHours;
 
-  @Column(name = "DepartmentID")
-  private int departmentId;
+  // @Column(name = "DepartmentID")
+  // private int departmentId;
+
+  @ManyToOne
+  @JoinColumn(name = "DepartmentID", nullable = false)
+  private Department department;
 
   public int getID() {
     return ID;
@@ -47,14 +53,14 @@ public class Course {
     this.creditHours = creditHours;
   }
 
-  public int getDepartmentId() {
-    return departmentId;
-  }
+  // public int getDepartmentId() {
+  // return departmentId;
+  // }
 
-  public void setDepartmentId(int departmentId) {
-    this.departmentId = departmentId;
-  }
-
+  // public void setDepartmentId(int departmentId) {
+  // this.departmentId = departmentId;
+  // }
+  //
 
 
 }

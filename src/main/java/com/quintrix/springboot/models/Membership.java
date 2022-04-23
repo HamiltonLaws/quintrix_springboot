@@ -12,11 +12,21 @@ import javax.persistence.Table;
 @Table(name = "membership")
 public class Membership {
 
+
+
+  /*
+   * TODO Connect to student and club
+   */
+
   @Id
   @GeneratedValue
   private int ID;
   private int ClubID;
-  private int StudentID;
+  // private int StudentID;
+
+  // @ManyToOne
+  // @JoinColumn(name = "StudentID", nullable = false)
+  // private Student student;
 
   @Column(name = "DateJoined")
   private LocalDateTime dateJoined;
@@ -45,12 +55,12 @@ public class Membership {
     ClubID = clubID;
   }
 
-  public int getStudentID() {
-    return StudentID;
-  }
+  // public int getStudentID() {
+  // return StudentID;
+  // }
 
-  public void setStudentID(int studentID) {
-    StudentID = studentID;
-  }
+  // public void setStudentID(int studentID) {
+  // StudentID = studentID;
+  // }
 
 }
