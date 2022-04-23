@@ -1,20 +1,16 @@
 package com.quintrix.springboot.models;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-
 @Entity
-@Table(name = "major")
-public class Major {
+@Table(name = "semester")
+public class Semester {
 
   @Id
   private int ID;
-
-  @Column(name = "Name")
-  private String name;
+  private String Name;
 
   public int getID() {
     return ID;
@@ -25,11 +21,11 @@ public class Major {
   }
 
   public String getName() {
-    return name;
+    return Name;
   }
 
   public void setName(String name) {
-    this.name = name;
+    Name = name;
   }
 
 }
