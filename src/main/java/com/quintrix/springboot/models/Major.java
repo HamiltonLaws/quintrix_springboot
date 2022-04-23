@@ -1,22 +1,24 @@
-package com.quintrix.springboot.controllers.models;
+package com.quintrix.springboot.models;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 
-@AllArgsConstructor
-@NoArgsConstructor
+
 @Entity
 @Table(name = "major")
 public class Major {
 
   @Id
-  @GeneratedValue
   private int ID;
-  private String Name;
+
+  @Column(name = "Name")
+  private String name;
+
+  @OneToOne(mappedBy = "major")
+  private Student student;
 
   public int getID() {
     return ID;
@@ -27,11 +29,11 @@ public class Major {
   }
 
   public String getName() {
-    return Name;
+    return name;
   }
 
   public void setName(String name) {
-    Name = name;
+    this.name = name;
   }
 
 }
