@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -11,16 +13,19 @@ import javax.persistence.Table;
 public class Registration {
 
 
-  /*
-   * TODO Connect to student and section
-   */
 
   @Id
   @GeneratedValue
   private int ID;
-  private int StudentID;
-  private int SectionID;
   private BigDecimal Grade;
+
+  @ManyToOne
+  @JoinColumn(name = "StudentID", nullable = false)
+  private Student student;
+
+  @ManyToOne
+  @JoinColumn(name = "SectionID", nullable = false)
+  private Section specificClass;
 
   public int getID() {
     return ID;
@@ -30,22 +35,6 @@ public class Registration {
     ID = iD;
   }
 
-  public int getStudentID() {
-    return StudentID;
-  }
-
-  public void setStudentID(int studentID) {
-    StudentID = studentID;
-  }
-
-  public int getSectionID() {
-    return SectionID;
-  }
-
-  public void setSectionID(int sectionID) {
-    SectionID = sectionID;
-  }
-
   public BigDecimal getGrade() {
     return Grade;
   }
@@ -53,4 +42,23 @@ public class Registration {
   public void setGrade(BigDecimal grade) {
     Grade = grade;
   }
+
+  public Student getStudent() {
+    return student;
+  }
+
+  public void setStudent(Student student) {
+    this.student = student;
+  }
+
+  public Section getSpecificClass() {
+    return specificClass;
+  }
+
+  public void setSpecificClass(Section specificClass) {
+    this.specificClass = specificClass;
+  }
+
+
+
 }

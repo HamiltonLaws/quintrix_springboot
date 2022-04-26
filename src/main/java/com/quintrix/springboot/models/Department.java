@@ -5,7 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 
@@ -18,8 +17,8 @@ public class Department {
   private int ID;
   private String Name;
 
-  @OneToOne(mappedBy = "department")
-  private Faculty faculty;
+  @OneToMany(mappedBy = "department")
+  private Set<Faculty> department;
 
   @OneToMany(mappedBy = "department")
   private Set<Course> courses;
@@ -39,4 +38,23 @@ public class Department {
   public void setName(String name) {
     Name = name;
   }
+
+  public Set<Faculty> getDepartment() {
+    return department;
+  }
+
+  public void setDepartment(Set<Faculty> department) {
+    this.department = department;
+  }
+
+  public Set<Course> getCourses() {
+    return courses;
+  }
+
+  public void setCourses(Set<Course> courses) {
+    this.courses = courses;
+  }
+
+
+
 }

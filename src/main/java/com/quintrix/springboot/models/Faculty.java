@@ -2,12 +2,13 @@ package com.quintrix.springboot.models;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import javax.persistence.CascadeType;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
@@ -30,31 +31,16 @@ public class Faculty {
   @Column(name = "Salary")
   private BigDecimal salary;
 
-  @OneToOne(cascade = CascadeType.ALL)
-  @JoinColumn(name = "DepartmentID", referencedColumnName = "ID")
+  @ManyToOne
+  @JoinColumn(name = "DepartmentID", nullable = true)
   private Department department;
 
-  // @Column(name = "DepartmentID")
-  // private int departmentId;
 
   @Column(name = "HireDate")
   private LocalDateTime hireDate;
 
-  // public int getDepartmentId() {
-  // return departmentId;
-  // }
-
-  // public void setDepartmentId(int departmentId) {
-  // this.departmentId = departmentId;
-  // }
-
-  public LocalDateTime getHireDate() {
-    return hireDate;
-  }
-
-  public void setHireDate(LocalDateTime hireDate) {
-    this.hireDate = hireDate;
-  }
+  @OneToMany(mappedBy = "professor")
+  private Set<Section> teaching;
 
   public int getID() {
     return ID;
@@ -95,5 +81,31 @@ public class Faculty {
   public void setSalary(BigDecimal salary) {
     this.salary = salary;
   }
+
+  public Department getDepartment() {
+    return department;
+  }
+
+  public void setDepartment(Department department) {
+    this.department = department;
+  }
+
+  public LocalDateTime getHireDate() {
+    return hireDate;
+  }
+
+  public void setHireDate(LocalDateTime hireDate) {
+    this.hireDate = hireDate;
+  }
+
+  public Set<Section> getTeaching() {
+    return teaching;
+  }
+
+  public void setTeaching(Set<Section> teaching) {
+    this.teaching = teaching;
+  }
+
+
 
 }

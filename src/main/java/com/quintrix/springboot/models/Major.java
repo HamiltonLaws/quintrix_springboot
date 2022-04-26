@@ -1,9 +1,10 @@
 package com.quintrix.springboot.models;
 
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
@@ -17,8 +18,8 @@ public class Major {
   @Column(name = "Name")
   private String name;
 
-  @OneToOne(mappedBy = "major")
-  private Student student;
+  @OneToMany(mappedBy = "major")
+  private Set<Student> students;
 
   public int getID() {
     return ID;
@@ -35,5 +36,14 @@ public class Major {
   public void setName(String name) {
     this.name = name;
   }
+
+  public Set<Student> getStudents() {
+    return students;
+  }
+
+  public void setStudents(Set<Student> students) {
+    this.students = students;
+  }
+
 
 }
