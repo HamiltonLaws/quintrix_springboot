@@ -12,6 +12,12 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
+
+/*
+ * TODO Took out the setters and getter for Registration and Membership set because an endless loop
+ * would form looking into issues to solve
+ */
+
 @Entity
 @Table(name = "student")
 public class Student {
@@ -121,22 +127,6 @@ public class Student {
 
   public void setEnrolledDate(LocalDateTime enrolledDate) {
     this.enrolledDate = enrolledDate;
-  }
-
-  public Set<Membership> getClubs() {
-    return clubs;
-  }
-
-  public void setClubs(Set<Membership> clubs) {
-    this.clubs = clubs;
-  }
-
-  public Set<Registration> getClasses() {
-    return classes;
-  }
-
-  public void setClasses(Set<Registration> classes) {
-    this.classes = classes;
   }
 
 

@@ -8,12 +8,18 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
+/*
+ * TODO Took out the setters and getter for student set because an endless loop would form looking
+ * into issues to solve
+ */
+
 @Entity
 @Table(name = "major")
 public class Major {
 
   @Id
-  private int ID;
+  @Column(name = "ID")
+  private int id;
 
   @Column(name = "Name")
   private String name;
@@ -22,11 +28,11 @@ public class Major {
   private Set<Student> students;
 
   public int getID() {
-    return ID;
+    return id;
   }
 
   public void setID(int iD) {
-    ID = iD;
+    id = iD;
   }
 
   public String getName() {
@@ -37,13 +43,6 @@ public class Major {
     this.name = name;
   }
 
-  public Set<Student> getStudents() {
-    return students;
-  }
-
-  public void setStudents(Set<Student> students) {
-    this.students = students;
-  }
 
 
 }
