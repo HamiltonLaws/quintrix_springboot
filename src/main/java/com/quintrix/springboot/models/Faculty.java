@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 
 @Entity
@@ -31,6 +33,7 @@ public class Faculty {
   @Column(name = "Salary")
   private BigDecimal salary;
 
+  @JsonBackReference
   @ManyToOne
   @JoinColumn(name = "DepartmentID", nullable = true)
   private Department department;
@@ -39,6 +42,7 @@ public class Faculty {
   @Column(name = "HireDate")
   private LocalDateTime hireDate;
 
+  @JsonManagedReference
   @OneToMany(mappedBy = "professor")
   private Set<Section> teaching;
 

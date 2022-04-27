@@ -8,6 +8,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 
 @Entity
@@ -25,19 +27,22 @@ public class Section {
   @Column(name = "Capacity")
   private int capacity;
 
+  @JsonBackReference
   @ManyToOne
   @JoinColumn(name = "CourseID", nullable = false)
   private Course course;
 
-
+  @JsonBackReference
   @ManyToOne
   @JoinColumn(name = "SemesterID", nullable = false)
   private Semester semester;
 
+  @JsonBackReference
   @ManyToOne
   @JoinColumn(name = "TaughtByID", nullable = false)
   private Faculty professor;
 
+  @JsonManagedReference
   @OneToMany(mappedBy = "specificClass")
   private Set<Registration> registered;
 

@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 
 /*
@@ -24,8 +25,17 @@ public class Major {
   @Column(name = "Name")
   private String name;
 
+  @JsonManagedReference
   @OneToMany(mappedBy = "major")
   private Set<Student> students;
+
+  public Set<Student> getStudents() {
+    return students;
+  }
+
+  public void setStudents(Set<Student> students) {
+    this.students = students;
+  }
 
   public int getID() {
     return id;

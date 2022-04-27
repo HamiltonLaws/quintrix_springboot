@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 
 @Entity
@@ -17,9 +18,11 @@ public class Department {
   private int ID;
   private String Name;
 
+  @JsonManagedReference
   @OneToMany(mappedBy = "department")
   private Set<Faculty> department;
 
+  @JsonManagedReference
   @OneToMany(mappedBy = "department")
   private Set<Course> courses;
 

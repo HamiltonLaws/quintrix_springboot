@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 
 @Entity
@@ -20,11 +21,13 @@ public class Membership {
   @GeneratedValue
   private int ID;
 
+  @JsonBackReference
   @ManyToOne
   @JoinColumn(name = "ClubID", nullable = false)
   private Club club;
 
 
+  @JsonBackReference
   @ManyToOne
   @JoinColumn(name = "StudentID", nullable = true)
   private Student member;

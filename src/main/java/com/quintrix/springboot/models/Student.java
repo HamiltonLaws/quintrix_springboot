@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 
 
@@ -37,6 +39,7 @@ public class Student {
   @Column(name = "Sex")
   private char sex;
 
+  @JsonBackReference
   @ManyToOne
   @JoinColumn(name = "MajorID", nullable = true)
   private Major major;
@@ -51,11 +54,29 @@ public class Student {
   @Column(name = "EnrolledDate")
   private LocalDateTime enrolledDate;
 
+  @JsonManagedReference
   @OneToMany(mappedBy = "member")
   private Set<Membership> clubs;
 
+  @JsonManagedReference
   @OneToMany(mappedBy = "student")
   private Set<Registration> classes;
+
+  public Set<Membership> getClubs() {
+    return clubs;
+  }
+
+  public void setClubs(Set<Membership> clubs) {
+    this.clubs = clubs;
+  }
+
+  public Set<Registration> getClasses() {
+    return classes;
+  }
+
+  public void setClasses(Set<Registration> classes) {
+    this.classes = classes;
+  }
 
   public int getID() {
     return ID;
