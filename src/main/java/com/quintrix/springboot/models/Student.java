@@ -2,14 +2,23 @@ package com.quintrix.springboot.models;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import javax.persistence.CascadeType;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+
+
+/*
+ * TODO Took out the setters and getter for Registration and Membership set because an endless loop
+ * would form looking into issues to solve
+ */
 
 @Entity
 @Table(name = "student")
@@ -30,12 +39,11 @@ public class Student {
   @Column(name = "Sex")
   private char sex;
 
-  @OneToOne(cascade = CascadeType.ALL)
-  @JoinColumn(name = "MajorID", referencedColumnName = "ID")
+  @JsonBackReference
+  @ManyToOne
+  @JoinColumn(name = "MajorID", nullable = true)
   private Major major;
 
-  // @Column(name = "MajorID")
-  // private int majorId;
 
   @Column(name = "Scholarship")
   private BigDecimal scholarship;
@@ -46,29 +54,32 @@ public class Student {
   @Column(name = "EnrolledDate")
   private LocalDateTime enrolledDate;
 
+  @JsonManagedReference
+  @OneToMany(mappedBy = "member")
+  private Set<Membership> clubs;
 
-  // @OneToMany(mappedBy = "student")
-  // private Set club;
+  @JsonManagedReference
+  @OneToMany(mappedBy = "student")
+  private Set<Registration> classes;
 
+  public Set<Membership> getClubs() {
+    return clubs;
+  }
+
+  public void setClubs(Set<Membership> clubs) {
+    this.clubs = clubs;
+  }
+
+  public Set<Registration> getClasses() {
+    return classes;
+  }
+
+  public void setClasses(Set<Registration> classes) {
+    this.classes = classes;
+  }
 
   public int getID() {
     return ID;
-  }
-
-  public LocalDateTime getDateOfBirth() {
-    return dateOfBirth;
-  }
-
-  public void setDateOfBirth(LocalDateTime dateOfBirth) {
-    this.dateOfBirth = dateOfBirth;
-  }
-
-  public LocalDateTime getEnrolledDate() {
-    return enrolledDate;
-  }
-
-  public void setEnrolledDate(LocalDateTime enrolledDate) {
-    this.enrolledDate = enrolledDate;
   }
 
   public void setID(int iD) {
@@ -107,13 +118,13 @@ public class Student {
     this.sex = sex;
   }
 
-  // public int getMajorId() {
-  // return majorId;
-  // }
+  public Major getMajor() {
+    return major;
+  }
 
-  // public void setMajorId(int majorId) {
-  // this.majorId = majorId;
-  // }
+  public void setMajor(Major major) {
+    this.major = major;
+  }
 
   public BigDecimal getScholarship() {
     return scholarship;
@@ -122,5 +133,23 @@ public class Student {
   public void setScholarship(BigDecimal scholarship) {
     this.scholarship = scholarship;
   }
+
+  public LocalDateTime getDateOfBirth() {
+    return dateOfBirth;
+  }
+
+  public void setDateOfBirth(LocalDateTime dateOfBirth) {
+    this.dateOfBirth = dateOfBirth;
+  }
+
+  public LocalDateTime getEnrolledDate() {
+    return enrolledDate;
+  }
+
+  public void setEnrolledDate(LocalDateTime enrolledDate) {
+    this.enrolledDate = enrolledDate;
+  }
+
+
 
 }

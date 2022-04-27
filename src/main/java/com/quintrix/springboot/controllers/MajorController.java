@@ -33,9 +33,15 @@ public class MajorController {
     return service.getMajors();
   }
 
-  @GetMapping("/majorById/{id}")
+  @GetMapping("/major/{id}")
   public Major findMajorById(@PathVariable int id) {
     return service.getMajorId(id);
+  }
+
+
+  @GetMapping("majorByName/{name}")
+  public List<Major> findMajorByName(@PathVariable String name) {
+    return service.getMajorByName(name);
   }
 
 

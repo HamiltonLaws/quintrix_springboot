@@ -11,9 +11,11 @@ public class MajorServices {
   @Autowired
   private MajorRepository repository;
 
+
   public Major saveMajor(Major major) {
     return repository.save(major);
   }
+
 
   public List<Major> saveMajors(List<Major> major) {
     return repository.saveAll(major);
@@ -27,9 +29,9 @@ public class MajorServices {
     return repository.findById(id).orElse(null);
   }
 
-  // public Major getMajorByName(String name) {
-  // return repository.findByMajor(name);
-  // }
+  public List<Major> getMajorByName(String name) {
+    return repository.findByName(name);
+  }
 
   public String deleteMajor(int id) {
     repository.deleteById(id);
@@ -41,5 +43,7 @@ public class MajorServices {
     existingMajor.setName(major.getName());
     return repository.save(existingMajor);
   }
+
+
 
 }

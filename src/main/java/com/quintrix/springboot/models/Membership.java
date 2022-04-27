@@ -5,7 +5,10 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 
 @Entity
@@ -14,30 +17,23 @@ public class Membership {
 
 
 
-  /*
-   * TODO Connect to student and club
-   */
-
   @Id
   @GeneratedValue
   private int ID;
-  private int ClubID;
-  // private int StudentID;
 
-  // @ManyToOne
-  // @JoinColumn(name = "StudentID", nullable = false)
-  // private Student student;
+  @JsonBackReference
+  @ManyToOne
+  @JoinColumn(name = "ClubID", nullable = false)
+  private Club club;
+
+
+  @JsonBackReference
+  @ManyToOne
+  @JoinColumn(name = "StudentID", nullable = true)
+  private Student member;
 
   @Column(name = "DateJoined")
   private LocalDateTime dateJoined;
-
-  public LocalDateTime getDateJoined() {
-    return dateJoined;
-  }
-
-  public void setDateJoined(LocalDateTime dateJoined) {
-    this.dateJoined = dateJoined;
-  }
 
   public int getID() {
     return ID;
@@ -47,20 +43,30 @@ public class Membership {
     ID = iD;
   }
 
-  public int getClubID() {
-    return ClubID;
+  public Club getClub() {
+    return club;
   }
 
-  public void setClubID(int clubID) {
-    ClubID = clubID;
+  public void setClub(Club club) {
+    this.club = club;
   }
 
-  // public int getStudentID() {
-  // return StudentID;
-  // }
+  public Student getMember() {
+    return member;
+  }
 
-  // public void setStudentID(int studentID) {
-  // StudentID = studentID;
-  // }
+  public void setMember(Student member) {
+    this.member = member;
+  }
+
+  public LocalDateTime getDateJoined() {
+    return dateJoined;
+  }
+
+  public void setDateJoined(LocalDateTime dateJoined) {
+    this.dateJoined = dateJoined;
+  }
+
+
 
 }
