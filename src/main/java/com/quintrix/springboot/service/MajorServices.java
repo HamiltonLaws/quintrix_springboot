@@ -3,7 +3,7 @@ package com.quintrix.springboot.service;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.quintrix.springboot.models.Major;
+import com.quintrix.springboot.models.collage.Major;
 import com.quintrix.springboot.repository.MajorRepository;
 
 @Service

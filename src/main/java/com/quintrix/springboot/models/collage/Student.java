@@ -1,4 +1,4 @@
-package com.quintrix.springboot.models;
+package com.quintrix.springboot.models.collage;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
