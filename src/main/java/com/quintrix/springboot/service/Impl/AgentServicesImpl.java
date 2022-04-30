@@ -117,9 +117,13 @@ public class AgentServicesImpl implements AgentServices {
     if (agentsListResonseEnity.getStatusCode() == HttpStatus.OK) {
       agentList = agentsListResonseEnity.getBody();
       idList = agentList.stream().filter(c -> c.getId().equals(id)).collect(Collectors.toList());
-      return idList;
+      if (idList.isEmpty()) {
+        throw new IllegalStateException("invalidID");
+      } else {
+        return idList;
+      }
     } else {
-      return null;
+      throw new IllegalStateException("invalidID");
     }
   }
 }
