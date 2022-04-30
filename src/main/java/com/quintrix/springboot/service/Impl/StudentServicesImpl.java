@@ -1,4 +1,4 @@
-package com.quintrix.springboot.service;
+package com.quintrix.springboot.service.Impl;
 
 import java.util.List;
 import java.util.Set;
@@ -9,6 +9,7 @@ import com.quintrix.springboot.models.collage.Registration;
 import com.quintrix.springboot.models.collage.Section;
 import com.quintrix.springboot.models.collage.Student;
 import com.quintrix.springboot.repository.StudentRepository;
+import com.quintrix.springboot.service.StudentServices;
 
 @Service
 public class StudentServicesImpl implements StudentServices {
@@ -16,9 +17,11 @@ public class StudentServicesImpl implements StudentServices {
   StudentRepository repository;
 
 
+
   @Override
   public List<Student> getStudents() {
     return repository.findAll();
+
   }
 
   /*
@@ -27,6 +30,7 @@ public class StudentServicesImpl implements StudentServices {
   @Override
   public List<Student> getByLastName(String name) {
     return repository.findByLastName(name);
+
   }
 
   /*
@@ -38,7 +42,9 @@ public class StudentServicesImpl implements StudentServices {
     Set<Registration> registeredList = selectedStudent.getClasses();
     List<Section> sectionList =
         registeredList.stream().map(c -> c.getSpecificClass()).collect(Collectors.toList());
+
     return sectionList.stream().map(c -> c.getCourse().getName()).collect(Collectors.toList());
+
 
   }
 
@@ -51,6 +57,7 @@ public class StudentServicesImpl implements StudentServices {
     Set<Registration> registrationList = selectedStudent.getClasses();
     return registrationList.stream().map(c -> c.getSpecificClass().getName())
         .collect(Collectors.toList());
+
   }
 
 
