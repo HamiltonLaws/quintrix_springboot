@@ -1,4 +1,4 @@
-package com.quintrix.springboot.models;
+package com.quintrix.springboot.models.collage;
 
 import java.time.LocalDateTime;
 import javax.persistence.Column;

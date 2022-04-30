@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import com.quintrix.springboot.models.Major;
+import com.quintrix.springboot.models.collage.Major;
 import com.quintrix.springboot.service.MajorServices;
 
 @RestController
