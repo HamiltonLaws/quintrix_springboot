@@ -4,6 +4,8 @@ package com.quintrix.springboot.service.Impl;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
@@ -18,6 +20,8 @@ import com.quintrix.springboot.service.AgentServices;
 
 @Service
 public class AgentServicesImpl implements AgentServices {
+
+  private static final Logger logger = LoggerFactory.getLogger(AgentServicesImpl.class);
 
   @Autowired
   RestTemplate restTemplate;
@@ -37,6 +41,7 @@ public class AgentServicesImpl implements AgentServices {
     if (agentsListResonseEnity.getStatusCode() == HttpStatus.OK) {
       return agentsListResonseEnity.getBody();
     } else {
+      logger.error("Unable to get Agents from rest Template");
       return null;
     }
 
@@ -57,11 +62,14 @@ public class AgentServicesImpl implements AgentServices {
       genderList =
           agentList.stream().filter(c -> c.getGender().equals(gender)).collect(Collectors.toList());
       if (genderList.isEmpty()) {
+        logger.error("User entered unusable gender");
         throw new AgentNotFoundException("Invalid Gender", "Please male or female");
       } else {
         return genderList;
       }
     } else {
+      logger.error("Unable to get Agents from rest Template");
+      // change to different exception TODO
       throw new AgentNotFoundException("Invalid Gender", "Please male or female");
     }
   }
@@ -81,11 +89,14 @@ public class AgentServicesImpl implements AgentServices {
       nameList =
           agentList.stream().filter(c -> c.getName().equals(name)).collect(Collectors.toList());
       if (nameList.isEmpty()) {
+        logger.error("User entered unusable name");
         throw new AgentNotFoundException("Invalid Name", "Please enter a valid Name");
       } else {
         return nameList;
       }
     } else {
+      logger.error("Unable to get Agents from rest Template");
+      // change to different exception
       throw new AgentNotFoundException("Invalid Name", "Please enter a valid Name");
     }
   }
@@ -109,12 +120,15 @@ public class AgentServicesImpl implements AgentServices {
           agentList.stream().filter(c -> c.getGender().equals(gender)).collect(Collectors.toList());
       genderList.retainAll(nameList);
       if (genderList.isEmpty()) {
+        logger.error("User entered unusable gender and name");
         throw new AgentNotFoundException("Invalid Gender or Invalid Name",
             "Pleases use Female or Male or input valid name");
       } else {
         return genderList;
       }
     } else {
+      logger.error("Unable to get Agents from rest Template");
+      // change to different exception
       throw new AgentNotFoundException("Invalid Gender or Invalid Name",
           "Pleases use Female or Male or input valid name");
     }
@@ -135,11 +149,14 @@ public class AgentServicesImpl implements AgentServices {
       agentList = agentsListResonseEnity.getBody();
       idList = agentList.stream().filter(c -> c.getId().equals(id)).collect(Collectors.toList());
       if (idList.isEmpty()) {
+        logger.error("User entered unusable ID");
         throw new AgentNotFoundException("Invalid ID", "Pleases use a viable ID");
       } else {
         return idList;
       }
     } else {
+      logger.error("Unable to get Agents from rest Template");
+      // change to different exception
       throw new AgentNotFoundException("invalidID", "Pleases use a viable ID");
     }
   }
