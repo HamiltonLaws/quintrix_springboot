@@ -13,8 +13,23 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
 
   @ExceptionHandler(value = {IllegalArgumentException.class, IllegalStateException.class})
   protected ResponseEntity<Object> handleConflict(RuntimeException ex, WebRequest request) {
-    String bodyOfResponse = "This should be application specific";
-    return handleExceptionInternal(ex, bodyOfResponse, new HttpHeaders(), HttpStatus.CONFLICT,
-        request);
+    Error error = new Error();
+    error.setMessage("This came from IllegalArgumentException or IllegalStateException");
+    error.setCustomMessage(ex.getMessage());
+    error.setHttpStatusCode(HttpStatus.CONFLICT.value());
+    return handleExceptionInternal(ex, error, new HttpHeaders(), HttpStatus.CONFLICT, request);
+  }
+
+  @ExceptionHandler(value = AgentNotFoundException.class)
+  public ResponseEntity<Object> handleException2(Exception ex, WebRequest request) {
+    if (ex instanceof AgentNotFoundException) {
+      Error error = new Error();
+      error.setMessage(((AgentNotFoundException) ex).displayMessage);
+      error.setCustomMessage(((AgentNotFoundException) ex).detailedMessage);
+      error.setHttpStatusCode(HttpStatus.NOT_FOUND.value());
+      return handleExceptionInternal(ex, error, new HttpHeaders(), HttpStatus.NOT_FOUND, request);
+    } else {
+      return null;
+    }
   }
 }
