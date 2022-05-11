@@ -39,6 +39,7 @@ public class AgentServicesImpl implements AgentServices {
         HttpMethod.GET, null, new ParameterizedTypeReference<List<Agent>>() {});
 
     if (agentsListResonseEnity.getStatusCode() == HttpStatus.OK) {
+      logger.debug("Returning list of all Agents {}" + agentsListResonseEnity.getBody());
       return agentsListResonseEnity.getBody();
     } else {
       logger.error("Unable to get Agents from rest Template");
@@ -65,6 +66,7 @@ public class AgentServicesImpl implements AgentServices {
         logger.error("User entered unusable gender");
         throw new AgentNotFoundException("Invalid Gender", "Please male or female");
       } else {
+        logger.debug("Retuning a list by gender {} " + genderList);
         return genderList;
       }
     } else {
@@ -92,6 +94,7 @@ public class AgentServicesImpl implements AgentServices {
         logger.error("User entered unusable name");
         throw new AgentNotFoundException("Invalid Name", "Please enter a valid Name");
       } else {
+        logger.debug("Return Agents by name {}" + nameList);
         return nameList;
       }
     } else {
@@ -124,6 +127,7 @@ public class AgentServicesImpl implements AgentServices {
         throw new AgentNotFoundException("Invalid Gender or Invalid Name",
             "Pleases use Female or Male or input valid name");
       } else {
+        logger.debug("Retun list by gender and name {}" + genderList);
         return genderList;
       }
     } else {
@@ -152,6 +156,7 @@ public class AgentServicesImpl implements AgentServices {
         logger.error("User entered unusable ID");
         throw new AgentNotFoundException("Invalid ID", "Pleases use a viable ID");
       } else {
+        logger.debug("Return Agent by ID {} " + idList);
         return idList;
       }
     } else {

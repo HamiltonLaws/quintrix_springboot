@@ -32,4 +32,17 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
       return null;
     }
   }
+
+  @ExceptionHandler(value = StudentNotFoundException.class)
+  public ResponseEntity<Object> handleException3(Exception ex, WebRequest request) {
+    if (ex instanceof StudentNotFoundException) {
+      Error error = new Error();
+      error.setMessage(((StudentNotFoundException) ex).displayMessage);
+      error.setCustomMessage(((StudentNotFoundException) ex).detailedMessage);
+      error.setHttpStatusCode(HttpStatus.NOT_FOUND.value());
+      return handleExceptionInternal(ex, error, new HttpHeaders(), HttpStatus.NOT_FOUND, request);
+    } else {
+      return null;
+    }
+  }
 }

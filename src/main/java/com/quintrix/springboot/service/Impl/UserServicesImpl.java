@@ -34,6 +34,7 @@ public class UserServicesImpl implements UserServices {
 
 
     if (userListResonseEnity.getStatusCode() == HttpStatus.OK) {
+      logger.debug("Return list of all Users {}" + userListResonseEnity.getBody());
       return userListResonseEnity.getBody();
     } else
       logger.error("Unable to get Users from rest Template");
@@ -44,6 +45,7 @@ public class UserServicesImpl implements UserServices {
   public User saveUser(User user) {
     ResponseEntity<Void> request = restTemplate.postForEntity(userServiceGetURL, user, Void.class);
     if (request.getStatusCode() == HttpStatus.OK) {
+      logger.debug("Sucsesfuly wrote user to database.");
       return user;
     }
     logger.error("Unable to post Users to rest Template");
