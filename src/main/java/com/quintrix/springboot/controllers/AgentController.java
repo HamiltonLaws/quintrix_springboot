@@ -43,6 +43,7 @@ public class AgentController {
       logger.debug("Request for agent by name {}", name);
       return service.getAgentsByName(name);
     } else {
+      logger.error("User unable to make request");
       return null;
     }
   }
