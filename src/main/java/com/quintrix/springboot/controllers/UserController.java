@@ -31,7 +31,7 @@ public class UserController {
 
   @PostMapping("/users")
   public User saveUser(@RequestBody User user) {
-    logger.debug("Request to post {}" + user);
+    logger.debug("Request to post {}", user);
     return service.saveUser(user);
   }
 

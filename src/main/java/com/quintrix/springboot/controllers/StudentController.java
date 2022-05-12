@@ -26,19 +26,19 @@ public class StudentController {
 
   @GetMapping("/studentClasses/{id}")
   public List<String> getClassById(@PathVariable int id) {
-    logger.debug("User request class list by student id {}" + id);
+    logger.debug("User request class list by student id {}", id);
     return service.getClassByID(id);
   }
 
   @GetMapping("/studentSchedule/{id}")
   public List<String> getScheduleById(@PathVariable int id) {
-    logger.debug("User requests schedule by student id {} " + id);
+    logger.debug("User requests schedule by student id {} ", id);
     return service.getScheduleById(id);
   }
 
   @GetMapping("/studentLastName/{name}")
   public List<Student> getByLastName(@PathVariable String name) {
-    logger.debug("User requests students with last name {}" + name);
+    logger.debug("User requests students with last name {}", name);
     return service.getByLastName(name);
   }
 }

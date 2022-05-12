@@ -24,13 +24,13 @@ public class MajorController {
 
   @PostMapping("/addMajor")
   public Major addMajor(@RequestBody Major major) {
-    logger.debug("User requests to add a Major {}" + major);
+    logger.debug("User requests to add a Major {}", major);
     return service.saveMajor(major);
   }
 
   @PostMapping("/addMajors")
   public List<Major> addmajors(@RequestBody List<Major> majors) {
-    logger.debug("User requests to add multipul majors {} " + majors);
+    logger.debug("User requests to add multipul majors {} ", majors);
     return service.saveMajors(majors);
   }
 
@@ -42,27 +42,27 @@ public class MajorController {
 
   @GetMapping("/major/{id}")
   public Major findMajorById(@PathVariable int id) {
-    logger.debug("User requests major by id {} " + id);
+    logger.debug("User requests major by id {} ", id);
     return service.getMajorId(id);
   }
 
 
   @GetMapping("majorByName/{name}")
   public List<Major> findMajorByName(@PathVariable String name) {
-    logger.debug("User request a major with name {}" + name);
+    logger.debug("User request a major with name {}", name);
     return service.getMajorByName(name);
   }
 
 
   @PutMapping("/majorUpdate")
   public Major updateMajor(@RequestBody Major major) {
-    logger.debug("User requests to update major {}" + major);
+    logger.debug("User requests to update major {}", major);
     return service.updateMajor(major);
   }
 
   @DeleteMapping("/majorDelete/{id}")
   public String deleteMajor(@PathVariable int id) {
-    logger.debug("User requests to delete Major with id {}" + id);
+    logger.debug("User requests to delete Major with id {}", id);
     return service.deleteMajor(id);
   }
 }

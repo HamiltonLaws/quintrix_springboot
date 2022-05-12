@@ -21,7 +21,7 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
   }
 
   @ExceptionHandler(value = AgentNotFoundException.class)
-  public ResponseEntity<Object> handleException2(Exception ex, WebRequest request) {
+  public ResponseEntity<Object> handleExceptionANF(Exception ex, WebRequest request) {
     if (ex instanceof AgentNotFoundException) {
       Error error = new Error();
       error.setMessage(((AgentNotFoundException) ex).displayMessage);
@@ -34,11 +34,24 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
   }
 
   @ExceptionHandler(value = StudentNotFoundException.class)
-  public ResponseEntity<Object> handleException3(Exception ex, WebRequest request) {
+  public ResponseEntity<Object> handleExceptionSNF(Exception ex, WebRequest request) {
     if (ex instanceof StudentNotFoundException) {
       Error error = new Error();
       error.setMessage(((StudentNotFoundException) ex).displayMessage);
       error.setCustomMessage(((StudentNotFoundException) ex).detailedMessage);
+      error.setHttpStatusCode(HttpStatus.NOT_FOUND.value());
+      return handleExceptionInternal(ex, error, new HttpHeaders(), HttpStatus.NOT_FOUND, request);
+    } else {
+      return null;
+    }
+  }
+
+  @ExceptionHandler(value = MajorNotFoundException.class)
+  public ResponseEntity<Object> handleExceptionMNF(Exception ex, WebRequest request) {
+    if (ex instanceof MajorNotFoundException) {
+      Error error = new Error();
+      error.setMessage(((MajorNotFoundException) ex).displayMessage);
+      error.setCustomMessage(((MajorNotFoundException) ex).detailedMessage);
       error.setHttpStatusCode(HttpStatus.NOT_FOUND.value());
       return handleExceptionInternal(ex, error, new HttpHeaders(), HttpStatus.NOT_FOUND, request);
     } else {
